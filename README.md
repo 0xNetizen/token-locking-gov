@@ -1,7 +1,7 @@
 # token-locking-gov
 Token locking governance proof of concept.
 
-#Design overview
+# Design overview
 - Votes are always binary - either for or against a proposal.
 - You vote by staking tokens for periods of time: votes are measured in terms of token-time. You set the amount of time yourself. 
 	- Staking means locking the tokens from whatever utility they previously had, including voting. 
@@ -22,8 +22,8 @@ Example winning thresholds:
 - Anyone can make a new proposal at any time. Trivial proposals will simply be quickly rejected or can be filtered out (see below). 
 - Expiry on old proposals is simply a number of days. 
 
-#Design in detail
-##Token-time staking
+# Design in detail
+## Token-time staking
 Token staking means that those who make decisions must face the consequences of those decisions (positve or negative), while those who didn't make the decision are able to exit. The voting power is only in terms of: token-time = {tokens staked} x {time staked for}. Any utility the token had is removed for the time that the token is staked. At a minimum, this utility would be the ability to vote. 
 
 However, tokens will still be tradeable even if they are staked. This means that staked tokens will have unique values depending on the time they are staked for and the proposal that was voted for. E.g. if I vote for a risky proposal that passes, my staked tokens will trade at a discount compared to unstaked tokens (excluding any token rewards, see below). 
@@ -34,18 +34,7 @@ The key advantage of using staked token-time for voting rather than simply numbe
 
 The maximum amount of staking time will be something like 100 years. This means that users with low coin holding can still heavily influence a vote (and profit, see below). 
 
-##Comparison with DAOstack
-It’s worth mentioning that the holographic consensus governance from DAOstack achieves similar properties as token-time staking because the reputation is identity based, therefore the value of the reputation is tied solely to the owner, so the voter is held accountable for their votes. 
-
-However, in DAOstack voters are incentivised to vote the same way as the majority by rewarding vote winners and punishing losers. This means that valuable disenting voices are disincentivised from voting, which means that the ability to make complex decisions is reduced and also the potential goal of any proposal decision is somewhat subjective given the potential different interests of reputation holders. Arguably, this subjectivity is a feature allowing the DAO to do things in the interests of the reputation holders rather than for the DAO or the reputation itself. But such a model is perhaps not best for the development of new ideas or new technologies where we specifically care about the development of the technology and don't care about the interests of the stake holders. 
-
-Having said that, there is an implicit incentive to maximise the value of the reputation since, by definition, this benefits reputation holders, which leads to a maximisation of utility of the DAO since this is where the value of the reputation comes from. Although this achieves a similar result to token-time staking, it is a more obfiscated way of getting there.
-
-However, this makes the investment proposition of any other token used in the protocol itself rather precarious because the governance incentivises maximisation of the reputation value rather than any token attached to the protocol. Therefore, outside investors would be forced to invest in the reputation which is more problematic because it is not designed to be traded - there would be no external market to find fair value for the reputation and no way for investors to exit their position. One might argue that the DAO can still manage and grow common goods, but, without outside investment, it cannot use the venture capital model that has arguably been very successful for technology so far.
-
-
-
-##Voting rewards
+## Voting rewards
 Analytical readers will have so far noticed that because of the token staking, winning a proposal is actually a cost to the voters since they experience a lack of utility and liquidity for the time their tokens are staked. Therefore, it is necessary to reward winning voters. The rewards will come from inflation of the token supply. Since the reward will be market based, this is simply the cost of governance for the protocol so it makes sense for all token holders to pay for this through supply inflation.
 
 The reward for staking is an amount of tokens proportionate to the amount of coin-time staked. For want of a better name, we can call this the 'reward value'. A market price is achieved for the reward value by using a dutch auction for batches of tokens at increasing reward values. This is done *independently* on both sides of vote. E.g. For the 'for' side of the vote, the first batch might be 100 token-day (e.g. 1 token x 100 days). The auction might start off with a reward value of 0.01 tokens per token-day. This reward value would slowly rise until enough voters have offered to stake at that value. So let's say the final reward value is 0.07 tokens/token-day which means the first batch of 100 token-day was auctioned for 7 tokens. If those voters win, their tokens will be staked for the amount of tokens and time they set and they will receive their reward when the staking of their tokens is complete. 
@@ -54,7 +43,7 @@ By having independent dutch auctions, voting is incentivised on both sides of th
 
 One criticism of this might be that, given that voters want a competitive return on their investment, the typical reward value might end up being quite high. This could be true, but the total amount of tokens that needs to be staked doesn't need to be very high to achieve good decision making, therefore the overall cost should be low. In any case, any token holder will be free to take part in governance therefore, there is no unfair reallocation of value and all value remains in the protocol network. 
 
-##But how do votes end?
+## But how do votes end?
 The winning side of the vote will be determined by how low the average reward value is across all the token-time staked for each side of the proposal. This can be measured as a ratio between the average reward value on each side of proposal i.e. {trailing side's average reward value} / {leading side's average reward value} (>1 by definition). A high reward value ratio suggests strong demand for the leading side of the proposal. This represents how much value (skin in the game) token holders are willing to stake on a particular outcome (including voting rewards) and also represents the best value-for-money option for the protocol.
 
 To end a vote, reward value ratio thresholds will be used to determine how strong a preference is. The smaller the percentage of available token-time staked, the higher the threshold will be. Example thresholds:
