@@ -1,5 +1,5 @@
 # token-locking-gov
-Token locking governance proof of concept.
+Token locking governance proof of concept on Ethereum.
 
 # Design overview
 - Votes are always binary - either for or against a proposal.
